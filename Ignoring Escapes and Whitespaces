@@ -1,0 +1,23 @@
+"""def remove_specific_value_occurences_from_list(the_list, val): #additional func
+   return [value for value in the_list if value != val]"""
+
+def convert_list_to_str(the_list):
+  remove_unneccessary_values_from_list(the_list)
+  return "".join(the_list)
+
+def remove_unneccessary_values_from_list(the_list): #ignoring escapes(whitespace included)
+  escapes = [chr(char) for char in range(1, 33)]
+  return [value for value in the_list if value not in escapes]
+def remove_escapes_from_list(the_list):  #ignoring escpes only
+  escapes = [chr(char) for char in range(1, 32)]
+  return [value for value in the_list if value not in escapes]
+def str_simplify(the_string):
+  return convert_list_to_str(remove_unneccessary_values_from_list(list(the_string)))
+def str_no_escape(the_string):
+  return convert_list_to_str(remove_escapes_from_list(list(the_string)))
+
+a="   \n\t  asdfsad  saf d  asdfasdfa as fasdf as dsf asdf saf safk jasbdf asdfjhkasbdf ask fjskfj sab fsjadh bfksadhf kasdjf hsa\n\t   \n\t\t\n  sa f\t \n \t sadfsadf"
+print(a)
+
+print(str_simplify(a))
+print(str_no_escape(a))

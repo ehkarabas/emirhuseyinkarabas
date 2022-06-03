@@ -1,0 +1,31 @@
+#randomly picking a number in range 1 to 100
+import random
+random_choice=random.choice(list(range(1,101)))
+guess_right=5  #guess right definition
+
+#input validation&game
+while guess_right>0:
+  guess=input("Type a positive whole number to guess randomly defined number between 1 and 100 in 5 tries maximum:")
+  if not guess.isdigit():
+    print("Invalid input, type only positive numbers to maximum 99.\n")
+    continue
+  elif int(guess)>99: #range validation
+    print("Invalid input, you cant type a number that bigger than 99.\n")
+    continue
+  guess=int(guess)
+  #wrong guess condition
+  if guess!=random_choice:
+    guess_right-=1
+    if guess_right==0: #guess right check to finish game
+      print(f"\nGame over, try again next time. The random number was {random_choice}.")
+      break
+    elif guess<random_choice:  #helping player if guess is less than the random number
+      print(f"Your guess is a bit lower. Try with higher numbers. Your rights left {guess_right}.\n")
+      continue
+    elif guess>random_choice:  #helping player if guess is more than the random number
+      print(f"Your guess is a bit higher. Try with lower numbers. Your rights left {guess_right}.\n")
+      continue
+  #correct guess condition
+  else:
+    print(f"\nYou are a mindreader! Congratulations, the random number was{random_choice}. You guessed at your {5-guess_right}. try.\n")
+    break

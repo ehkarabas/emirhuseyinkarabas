@@ -1,0 +1,37 @@
+#input validation
+while True:
+  num=input("Type a binary number to convert it to decimal:")
+  #negative number validation
+  if num.startswith("-"):
+    if not num[1:].isdigit():
+      print("Invalid negtive number syntax. Try again.\n")
+      continue
+    #base validation
+    elif [int(i) for i in [y for y in num if y!="-"] if int(i) not in list(range(2))]!=[]:
+        print("Invalid input, you can input 0 to 2(exclusive) in binary system. Try again.\n")
+        continue
+    else:
+        break
+  #positive number validation
+  elif not num.isdigit():
+    print("Invalid input, type only whole numbers. Try again.\n")
+    continue
+  #base validation
+  elif [int(i) for i in [y for y in num] if int(i) not in list(range(2))]!=[]:
+    print("Invalid input, you can input 0 to 2(exclusive) in binary system. Try again.\n")
+    continue  
+  else:
+    break
+#final output
+decimal,exponent=0,0
+num=int(num)
+temp_num_str=str(abs(num))
+for i in temp_num_str:
+  i=int(i)
+  decimal+=i*(2**((len(temp_num_str)-1)-exponent))
+  exponent+=1
+#negative output if num is negative
+if num<0:
+  decimal*=-1
+print("\n\n",format("FINAL RESULT","*^60s"),sep="")
+print("\nYour input as binary was",''.join("->"*7),"\b:"f"{num}\n"f'Decimal conversion of your binary input:{decimal}')

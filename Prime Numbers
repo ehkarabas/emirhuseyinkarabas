@@ -1,0 +1,30 @@
+#input validaiton
+while True:
+  limit=input("Type a number to define range limit in which display prime numbers.")
+  if not limit.isdigit():
+    print("Invalid input, type only positive whole numbers, try again.\n")
+    continue
+  elif int(limit)<2: #prime numbers range validation
+    print("You cant input less than two to display prime numbers. Try again.\n")
+  else:
+    limit=int(limit)
+    print(f"Range limit is saving as {limit}...\n")
+    break
+
+#finding prime numbers
+prime_num_list=list()
+#picking a number to check if it is prime
+for i in range(2,limit+1):
+  check=1
+  #checking the number if it is prime
+  for factor in range(2,limit):
+    if factor>=i:
+      break
+    else:
+      if i%factor==0:
+        check=0
+        break
+  #saving prime number in list
+  if check:
+    prime_num_list.append(i)
+print(f"Prime numbers from {prime_num_list[0]} to {limit} : {prime_num_list}")

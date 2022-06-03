@@ -1,0 +1,21 @@
+#input validation
+while True:
+  num=input("Type a number to check whether it is Harshad number:")
+  if not num.isdigit():
+    print("Invalid input, type only positive whole numbers, try again.\n")
+    continue
+  else:
+    break
+
+num=num.lstrip("0") #removing initial 0's if exist
+total,total_str=0,""
+
+#checking if the number is Harshad
+for i in num:
+  total+=int(i)
+  total_str+=i+"+"
+total_str=total_str[:-1]
+if int(num)%total==0:
+  print(f"{num} % ({total_str}) = 0",True)
+else:
+  print(False)

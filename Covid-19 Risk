@@ -1,0 +1,49 @@
+#input validation:
+while True:
+  age=input("Are you a cigarette addict older than 75 years old? Type 'Yes' or 'No': ")
+  if not age.isalpha():
+    print("Invalid input, you can use only letters.\n")
+    continue
+  elif age.lower() not in ("yes","no"):
+    print("Invalid input, you need to type only 'Yes' or 'No'.\n")
+    continue
+  else: #converting input to bool
+    if age=="yes":
+      age=True
+    else:
+      age=False
+    break
+while True:
+  chronic=input("\nDo you have a severe chronic disease? Type 'Yes' or 'No': ")
+  if not chronic.isalpha():
+    print("Invalid input, you can use only letters.\n")
+    continue
+  elif chronic.lower() not in ("yes","no"):
+    print("Invalid input, you need to type only 'Yes' or 'No'.\n")
+    continue
+  else: #converting input to bool
+    if chronic=="yes":
+      chronic=True
+    else:
+      chronic=False
+    break
+while True:
+  immune=input("\nIs your immune system too weak? Type 'Yes' or 'No': ")
+  if not immune.isalpha():
+    print("Invalid input, you can use only letters.\n")
+    continue
+  elif immune.lower() not in ("yes","no"):
+    print("Invalid input, you need to type only 'Yes' or 'No'.\n")
+    continue
+  else: #converting input to bool
+    if immune=="yes":
+      immune=True
+    else:
+      immune=False
+    break
+
+#finding risk
+if age or chronic or immune:
+  print("\nYou are in risky group")
+else:
+  print("\nYou are not in risky group")

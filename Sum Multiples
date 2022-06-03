@@ -1,0 +1,32 @@
+def sum_multiplication_to_limit(i,y,limit):
+  #finding common multiplication
+  max_var,min_var=max(i,y),min(i,y) 
+  max_multiplier=limit//max_var
+  if limit%max_var==0:
+    max_multiplier-=1
+    
+  #defining subtraction for args common factors
+  subtraction_multiplier=(limit//(i*y))
+  if limit%(i*y)==0:
+    subtraction_multiplier=-1
+  total_subtraction=(i*y)*((subtraction_multiplier*(subtraction_multiplier+1))/2)
+  
+  
+  #finding max args multiplication total to the limit
+  total=((max_multiplier*(max_multiplier+1))/2)*max_var
+  
+  #finding min args multiplication total to the limit
+  a=1
+  while min_var*(max_multiplier+a)<limit:
+    a+=1
+  total_addition=min_var*(((max_multiplier+a-1)*(max_multiplier+a))/2)
+  
+  #merging
+  total+=total_addition-total_subtraction
+  #checking if args equal
+  if i%y==0 or y%i==0:
+    total=total_addition
+  
+  return int(total)
+
+print(sum_multiplication_to_limit(6,6,1000))

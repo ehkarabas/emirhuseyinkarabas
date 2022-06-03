@@ -1,0 +1,45 @@
+import copy
+
+#input validation
+while True:
+  num=input("Type a decimal number to convert it to binary:")
+  #negative number validation
+  if num.startswith("-"):
+    if not num[1:].isdigit():
+      print("Invalid negtive number syntax. Try again.\n")
+      continue
+    else:
+      break
+  #positive number validation
+  elif not num.isdigit():
+    print("Invalid input, type only whole numbers. Try again.\n")
+    continue
+  else:
+    break
+
+#definitions before converting
+temp_num_int_remainder_list=[]
+binary_list=[]
+num=int(num)
+temp_num_int_quotient=copy.deepcopy(abs(num))
+
+#converting number to binary
+while temp_num_int_quotient>=2:
+  remainder=temp_num_int_quotient%2
+  temp_num_int_quotient//=2
+  temp_num_int_remainder_list.append(remainder)
+  
+#saving data
+binary_list.append(temp_num_int_quotient)
+temp_num_int_remainder_list.reverse()
+binary_list.extend(temp_num_int_remainder_list)
+binary_list=[str(i) for i in binary_list]
+
+#negative output if number is negative
+if num<0:
+  binary_list.insert(0,"-")
+
+#result_list to int conversion for final output
+temp_num_bin_str="".join(binary_list)
+print("\n\n",format("FINAL RESULT","*^60s"),sep="")
+print("\nYour input as decimal was",''.join("->"*7),"\b:"f"{num}\n"f'Binary conversion of your decimal input:{temp_num_bin_str}')

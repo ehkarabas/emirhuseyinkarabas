@@ -1,0 +1,15 @@
+#input validation
+while True:
+  word=input("Type something with only letters:")
+  if not word.isalpha():
+    print("Invalid input, type only letters.\n")
+    continue
+  else:
+    print("Input saved...\n")
+    break
+
+#comparising with its reverse
+if word==word[::-1]:
+  print(f"Your input was : {word} / Reverse of your input is : {word[::-1]}\nThat means Palindrome : {True}")
+else:
+  print(f"Your input was : {word} / Reverse of your input is : {word[::-1]}\nThat means Palindrome : {False}")

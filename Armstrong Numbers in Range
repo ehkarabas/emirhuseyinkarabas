@@ -1,0 +1,48 @@
+#input validation, saving numbers
+count=0
+num_list=list()
+while count!=2:
+  if count==0:
+    num_str=input("Type first number to define start of range:")
+  elif count==1:
+    num_str=input("Type second number to define end of range:")
+  if not num_str.isdigit():
+    print("Invalid input, type only positive whole numbers. Try again.\n")
+    continue
+  else:
+    if count==1 and int(num_list[0])>int(num_str): #fixing bigger inital number issue if exists
+      num_list.append(num_str)
+      num_list[0],num_list[1]=num_list[1],num_list[0]
+      print("Reversing limits for a valid range...\nSaving the number...")
+      count+=1
+    elif count==1 and num_list[0]==num_str: ##denying equal range limits
+      print(f"Initial and final numbers of the range cant be equal, input different(initial range was:{num_list[0]}) range limits.")
+      continue
+    else:
+      print("Saving the number...")
+      num_list.append(num_str)
+      count+=1
+
+#filling numbers between start and stop
+num_rangelist,num_armstrongdict=list(),dict()
+for i in range(int(num_list[0]),int(num_list[1])+1):
+  num_rangelist.append(f"{i}")
+
+#checking numbers whether they are armstrong or not
+for i in num_rangelist:
+  total=0
+  temp_str=""
+  for y in i:
+    total+=int(y)**len(i)
+  if total==int(i):
+    for z in i:
+      temp_str+="("+f"{z}"+"**"+f"{len(i)}"+")"+"+"
+    temp_str=temp_str[:-1]
+    num_armstrongdict[int(i)]=temp_str
+#final output
+if len(num_armstrongdict)==0:
+  print(f"\nThere is no armstrong number between {num_list[0]} and {num_list[1]}.")
+else:
+  print(f"\n\nArmstrong numbers from {num_list[0]} to {num_list[1]} : {list(num_armstrongdict.keys())}")
+  for key,value in num_armstrongdict.items():
+    print(f"{key} = {value}")

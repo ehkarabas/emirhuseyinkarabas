@@ -1,0 +1,49 @@
+#input validation
+count,num_lst=0,list()
+while count<=10:
+  num=input(f"Type a digit between 0 and 9 to save...\nYou can input 10 digits(now:{count} saved) maximum and 5 digits minimum(now:{count} saved) by default...\nIf you want to interrupt earlier, type '/cut' exactly:")
+  if num[0]=="/" and len(num_lst)<5:
+    print("You cant interrupt manually before input at least five number, try again.\n")
+    continue
+  #manual interrupt validation
+  elif num[0]=="/":
+    if num[1:]=="cut":
+      print("Numbers list is creating...\n")
+      break
+    else:
+      print("Invalid interrupt syntax, try again.\n")
+      continue
+  elif not num.isdigit():
+    print("Invalid input, you can type only positive whole numbers, try again.\n")
+    continue
+  #digit validation
+  elif not 0<=int(num)<=9:
+    print("Invalid input, you can type only digits from 0 to 9, try again.\n")
+    continue
+  #saving number
+  else:
+    count+=1
+    num_lst.append(int(num))
+    print("Number saved...\n")
+    if count==10:
+      print("Numbers list is creating...\n")
+      break
+
+#input validation
+while True:
+  repeat=input("\n\nType the repetition position number that defines right rotation:")
+  if not repeat.isdigit():
+    print("Invalid input, only positive whole numbers allowed, try again.\n")
+    continue
+  #saving repetition
+  else:
+    repeat=int(repeat)
+    print("Right rotate repetition defined...\n")
+    break
+
+#right rotation by repetition
+num_lst_rotate=num_lst[:]
+for i in range(repeat):
+  num_lst_rotate.insert(0,num_lst_rotate[-1])
+  num_lst_rotate.pop()
+print(f"\n\nYour input in order was : {num_lst}\nResult after {repeat} right rotate is : {num_lst_rotate}")

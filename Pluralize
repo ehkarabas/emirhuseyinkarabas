@@ -1,0 +1,38 @@
+#defining a function for the result
+def pluralize(str_lst:list):
+  plural_set=set()
+  for i in str_lst:
+    if str_lst.count(i)>1:  #if an items count more than 1 alter it and save
+      i+="s"
+      plural_set.add(i)
+    else:
+      plural_set.add(i)
+  print(f"\n\nYour input was:{str_lst}\nResult is:",end="")
+  return plural_set
+
+#input validation
+count,word_lst=0,list()
+while count<=10:
+  word_count=input(f"Type a word to check if you typed it more than once in total.\nYou can input 10 items(now:{count} saved) maximum by default. If you want to interrupt earlier, type '/cut' exactly:")
+  if word_count[0]=="/" and len(word_lst)==0:
+    print("You cant interrupt manually before input at least one item, try again.\n")
+    continue
+  #manual interrupt validation
+  elif word_count[0]=="/":  
+    if word_count[1:]=="cut":
+      break
+    else:
+      print("Invalid interrupt syntax, try again.\n")
+      continue
+  elif not word_count.isalpha():
+    print("Invalid input, you can type only letters, try again.\n")
+    continue
+  #saving item
+  else:
+    count+=1
+    word_lst.append(word_count)
+    print("Item saved...")
+    if count==10:
+      break
+      
+pluralize(word_lst)

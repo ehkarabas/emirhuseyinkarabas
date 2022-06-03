@@ -1,0 +1,6 @@
+numbers = [1,3,7,4,3,0,3,6,3,4]
+print(f"the most frequent number is {max(numbers, key = numbers.count)} and it was {numbers.count(max(numbers, key = numbers.count))} times repeated")
+
+from collections import Counter
+print(f"\nthe most frequent number is {Counter(numbers).most_common(1)[0][0]} and it was {Counter(numbers).most_common(1)[0][1]} times repeated")
+print(f"the 2nd most frequent number is {Counter(numbers).most_common(2)[1][0]} and it was {Counter(numbers).most_common(2)[1][1]} times repeated")

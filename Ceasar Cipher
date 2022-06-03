@@ -1,0 +1,33 @@
+#building special charset and its indexing
+alphabet_tr_string="abcçdefgğhıijklmnoöprsştuüvyz"
+alphabet_tr_checklist=list(alphabet_tr_string)+list(alphabet_tr_string.upper())+[" "]
+alphabet_dict=dict(zip(list(range(1,30)),list(zip(alphabet_tr_string,alphabet_tr_string.upper()))))
+
+#input validation
+while True:
+  string=input("Type something with only letters and whitespace:")
+  check=0
+  for i in string:
+    if i not in alphabet_tr_checklist:
+      check=1
+      break
+  if check:
+    print("Invalid input. Type only Turkish letters(whitespace allowed).\n")
+    continue
+  else:
+    print("Processing...")
+    break
+
+#changing letters
+string_temp=string[:]
+for i in range(len(string)):
+  if string_temp[i]!=" ":
+    for key,value in alphabet_dict.items():
+      if string_temp[i] in value:
+        if string[i].isupper():
+          string_temp=string_temp.replace(string_temp[i],alphabet_dict[(key+2)%len(alphabet_tr_string)][1],1)
+          break
+        else:
+          string_temp=string_temp.replace(string_temp[i],alphabet_dict[(key+2)%len(alphabet_tr_string)][0],1)
+          break
+print(f"Your text was:{string}, After conversion:{string_temp}")

@@ -1,0 +1,16 @@
+left_hand_set=set("qwertasdfgzxcvb")
+right_hand_set=set("yuiophjklnm")
+word=input("Type a word to check whether it is a comfortable word:")
+
+l,r,my_list=0,0,list(word.lower())
+
+for i in range(len(my_list)):
+  if my_list[i] in left_hand_set:
+    l=1
+  elif my_list[i] in right_hand_set:
+    r=1
+
+if r==1 and l==1:
+  print(True)
+else:
+  print(False) 

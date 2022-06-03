@@ -1,0 +1,4 @@
+text = "there.is.a.python.class.this.evening"
+text = text.replace(".", " ").split()[::-1]
+text = " ".join(text).replace(" ", "-")
+print(text)

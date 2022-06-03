@@ -1,0 +1,30 @@
+#input validation
+while True:
+  num=input("Type a number to check whether it is an Armtrong number:")
+  if not num.isdigit():
+    print("Invalid input, only positive whole numbers allowed. Try again.\n")
+    continue
+  elif int(num)==0:
+    print("Cant type 0, only positive whole numbers allowed. Try again.\n")
+    continue
+  else:
+    break
+
+#checking whether the input is an Armstrong number or not
+total,final_string,last=0,f"{num} = ",0
+for i in num:
+  temp_string=f"{i}**{len(num)}"
+  if last==len(num)-1:
+    final_string+=temp_string
+  else:
+    final_string+=temp_string+" + "
+  i=int(i)
+  total+=i**len(num)
+  last+=1
+
+#final output
+if total==int(num):
+  print("",final_string,"The number you input is an Armstrong number.",sep="\n")
+else:
+  final_string= final_string[:final_string.index("=")]+"!"+final_string[final_string.index("="):]
+  print("",final_string,"The number you input is not an Armstrong number.",sep="\n")

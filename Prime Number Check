@@ -1,0 +1,22 @@
+#input validaiton
+while True:
+  num=input("Type a number to check if it is prime :")
+  if not num.isdigit():
+    print("Invalid input, type only positive whole numbers, try again.\n")
+    continue
+  elif int(num)<2: #prime number validation
+    print("You cant input less than two to check if it is prime. Try again.\n")
+  else:
+    num=int(num)
+    break
+
+#checking the number if it is prime
+check=1
+for factor in range(2,num):
+  if num!=factor and num%factor==0:
+    check=0
+    break
+if check:
+  print(f"\n{num} is a prime number.")
+else:
+  print(f"\n{num} is not a prime number.")

@@ -1,0 +1,40 @@
+#input validation
+months_list=[f"{i:02d}" for i in range(1,13)]
+days_list=[f"{i:02d}" for i in range(1,32)]
+while True:
+  dob=input("Type your date of birth in MM-DD format to find out your zodiac sign:")
+  if len(dob)!=5 or dob[2]!="-" or dob[:2] not in months_list or dob[-2:] not in days_list:
+    print("Invalid input, type your date of birth in MM-DD format.")
+    continue
+  elif dob[:2]=="02" and int(dob[-2:])>29: #february special length 
+    print("Invalid input, February can has 29 days maximum.")
+    continue
+  elif dob[:2] in ["04","06","09","11"] and int(dob[-2:])>30: #30days special length 
+    print("Invalid input. April,June,September,November can have 30 days maximum.")
+    continue
+  else:
+    break
+
+#building zodiac sign dictionary
+zodiac_dict=dict()
+zodiac_dict["Aries"]=[f"{3:02d}-{y:02d}" for y in range(21,32)]+[f"{4:02d}-{y:02d}" for y in range(1,20)]
+zodiac_dict["Taurus"]=[f"{4:02d}-{y:02d}" for y in range(20,31)]+[f"{5:02d}-{y:02d}" for y in range(1,21)]
+zodiac_dict["Gemini"]=[f"{5:02d}-{y:02d}" for y in range(21,32)]+[f"{6:02d}-{y:02d}" for y in range(1,21)]
+zodiac_dict["Cancer"]=[f"{6:02d}-{y:02d}" for y in range(21,31)]+[f"{7:02d}-{y:02d}" for y in range(1,23)]
+zodiac_dict["Leo"]=[f"{7:02d}-{y:02d}" for y in range(23,32)]+[f"{8:02d}-{y:02d}" for y in range(1,23)]
+zodiac_dict["Virgo"]=[f"{8:02d}-{y:02d}" for y in range(23,32)]+[f"{9:02d}-{y:02d}" for y in range(1,23)]
+zodiac_dict["Libra"]=[f"{9:02d}-{y:02d}" for y in range(23,31)]+[f"{10:02d}-{y:02d}" for y in range(1,23)]
+zodiac_dict["Scorpio"]=[f"{10:02d}-{y:02d}" for y in range(23,32)]+[f"{11:02d}-{y:02d}" for y in range(1,22)]
+zodiac_dict["Sagittarius"]=[f"{11:02d}-{y:02d}" for y in range(22,31)]+[f"{12:02d}-{y:02d}" for y in range(1,22)]
+zodiac_dict["Capricorn"]=[f"{12:02d}-{y:02d}" for y in range(22,32)]+[f"{1:02d}-{y:02d}" for y in range(1,20)]
+zodiac_dict["Aquarius"]=[f"{1:02d}-{y:02d}" for y in range(20,32)]+[f"{2:02d}-{y:02d}" for y in range(1,19)]
+zodiac_dict["Pisces"]=[f"{2:02d}-{y:02d}" for y in range(19,30)]+[f"{3:02d}-{y:02d}" for y in range(1,21)]
+
+#matching input with zodiac sign
+for value in zodiac_dict.values():
+  if dob in value:
+    for key in zodiac_dict.keys():
+      if zodiac_dict[key]==value:
+        sign_result=key
+
+print(f"\n\nYour zodiac sign in regard to your date of birth which is {dob} : {sign_result}")

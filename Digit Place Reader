@@ -1,0 +1,25 @@
+#building pronounciations
+two_digit_text=["on","yirmi","otuz","kırk","elli","altmış","yetmiş","seksen","doksan"]
+one_digit_text=["bir","iki","üç","dört","beş","altı","yedi","sekiz","dokuz"]
+
+#input validation
+while True:
+  num=input("Type a one or two digit number(1-99):")
+  if not num.isdigit():
+    print("Invalid input, type only positive numbers to maximum 99.\n")
+    continue
+  elif int(num)>99: #checking if number has max 2 digit places 
+    print("Invalid input, you cant type a number that bigger than 99.\n")
+    continue
+  else:
+    print("Number saved...\n")
+    break
+
+#pronunciation
+if len(num)==1:
+  print(one_digit_text[int(num)-1].title())
+else:
+  if num[1]=="0": #1 digit place condition
+    print("",two_digit_text[int(num[0])-1].title(),sep="",end="\n\n")
+  else: #2 digit places condition
+    print("",two_digit_text[int(num[0])-1].title()+" "+one_digit_text[int(num[1])-1].title(),sep="",end="\n\n")

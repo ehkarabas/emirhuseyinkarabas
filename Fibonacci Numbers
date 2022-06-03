@@ -1,0 +1,9 @@
+fibonacci_list=list()
+for i in range(2): #initial definition
+  fibonacci_list.append(i)
+count=0
+while count in range(9):  #building 10 elements fibonacci list
+  count+=1
+  fibonacci_list.append(fibonacci_list[-1]+fibonacci_list[-2])
+del fibonacci_list[0]  #deleting 0 at the beginning
+print(fibonacci_list)

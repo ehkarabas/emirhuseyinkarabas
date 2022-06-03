@@ -1,0 +1,8 @@
+my_str=input("Type something to count letters&numbers inside:")
+alpha,num=0,0
+for i in my_str:
+  if i.isalpha(): #counting letters
+    alpha+=1
+  elif i.isdigit(): #counting digits
+    num+=1
+print(f"Letters:{alpha} Numbers:{num}")

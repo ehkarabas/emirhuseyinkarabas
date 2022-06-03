@@ -1,0 +1,26 @@
+num=600851475143
+check=2
+divider_list=[]
+while check<=num:
+  if num==2:
+    divider_list.append(check)
+    break
+  elif num!=check and num%check==0: #picking factor
+    count=0
+    for i in range(2,check): #checking the factor if it is prime
+      if check%i==0:
+        count+=1
+    if count==0:
+      divider_list.append(check)  #saving prime factor
+      num/=check                  #checking if the prime factor is still a factor
+      while num%check==0:
+        divider_list.append(check)
+        num/=check
+    else:
+      check+=1
+  elif check==num:  #saving remainder prime factor
+    divider_list.append(check)
+    break
+  else:
+    check+=1
+print(f"Prime divisors of your number: {divider_list}",f"\nBiggest prime divisor of your number: {divider_list[-1]}")

@@ -1,0 +1,25 @@
+#input validation
+while True:
+  digit_place=input("Type number(2 to 6) of digits of two numbers that you want to multiply to obtain largest palindrome number:")
+  if not digit_place.isdigit(): #digit validation
+    print("Invalid input, you can only input from 2 to 6 as whole numbers. Try again.\n")
+    continue
+  elif not 2<=int(digit_place)<=6:  #optimal range validation
+    print("Invalid input, you can only input from 2 to 6 as whole numbers. Try again.\n")
+    continue
+  else:
+    break
+
+#defining shorter check range as much as possible
+digit_list=list(reversed(range(int("9"*int(digit_place)) - 1*10**(int(digit_place)),(int("9"*int(digit_place))+1)))) 
+check=1
+#finding the biggest palindrome number in regard to input
+for i in digit_list:
+  for y in digit_list:
+    if check:
+      if str(i*y)==str(i*y)[::-1]:
+        print(f"\n\n{i*y} is the largest palindrome number made by multiplying two {digit_place}-digit numbers.\n{i} * {y} = {i*y} and {str(i*y)} equals reverse of {str(i*y)[::-1]}")
+        check=0
+        break
+    else:
+      break

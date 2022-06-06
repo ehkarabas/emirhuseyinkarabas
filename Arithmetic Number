@@ -1,0 +1,23 @@
+#input validation
+while True:
+  num=input("Type a number to check if it is arithmetic number or not:")
+  if not num.isdigit():
+    print("Invalid input, you can only whole numbers. Try again.\n")
+    continue
+  else:
+    break
+
+#building check set
+num=int(num)
+factor_list=[num//i for i in range(1,num+1) if num%i==0]
+#preparing text visual for validation
+factor_str=""
+factor_list_str=[f"{num} / {i}" for i in range(1,num+1) if num%i==0]
+for i in range(len(factor_list_str)):
+    factor_str+="("+factor_list_str[i]+")"+" + "
+factor_str=factor_str.rstrip(" + ")
+#checking number if it is an arithmetic number or not
+if sum(factor_list)%len(factor_list)==0:
+  print(f"\n",format(f"{num} is an arithmetic number.","*^100s"),f"Because {factor_str} = {sum(factor_list)} is divisible by {len(factor_list)}.",sep="\n")
+else:
+  print(f"\n",format(f"{num} is not an arithmetic number.","*^100s"),f"Because {factor_str} = {sum(factor_list)} is not divisible by {len(factor_list)}.",sep="\n")

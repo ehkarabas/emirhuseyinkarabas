@@ -1,0 +1,71 @@
+def check_smith(num:str,smith_list_result=[]):
+  #initial preperation for checking loop
+  num_int=num[:]
+  num_int=int(num_int)
+  check,notprime=2,0
+  divider_list=[]
+  #building loop to find and save prime factors
+  for i in range(2,num_int):    #checking if the number is not prime itself
+    if not num_int%i:
+      notprime=1
+  if notprime:                  #finding prime factors of a nonprime number
+    while check<=num_int:
+      if num_int==2:
+        divider_list.append(check)
+        break
+      elif num_int!=check and num_int%check==0: #picking factor
+        count=0
+        for i in range(2,check):        #checking the factor if it is prime
+          if check%i==0:
+            count+=1
+        if not count:
+          divider_list.append(check)  #saving prime factor
+          num_int/=check                  #checking if the prime factor is still a factor
+          while num_int%check==0:
+            divider_list.append(check)
+            num_int/=check
+        else:                         #checking different numbers if they will be a factor
+          check+=1
+      elif check==num_int:  #saving remainder prime factor
+        divider_list.append(check)
+        break
+      else:
+        check+=1
+
+  #building prime factors list as one digit
+  prime_factors_str,num_digits_str,divider_list_onedigit="","",[]
+  for i in divider_list:
+    tempstr_i=str(i)
+    if len(tempstr_i)==1:
+      prime_factors_str+=f"{i}"+" + "   #preparing text visual for validation
+      divider_list_onedigit.append(i)
+    else:
+      for y in tempstr_i:
+        prime_factors_str+=f"{y}"+" + "  #preparing text visual for validation
+        divider_list_onedigit.append(int(y))
+  prime_factors_str=prime_factors_str.rstrip(" + ")  #finalizing text visual
+  #checking if the number is a Smith number
+  total_num=0
+  for i in num:
+    total_num+=int(i)
+    num_digits_str+=i+" + "                     #preparing text visual for validation
+  num_digits_str=num_digits_str.rstrip(" + ")   #finalizing text visual
+  if total_num==sum(divider_list_onedigit):
+    smith_list_result.append(num)
+    print(f"\n{num} is a Smith number.",f"\nPrime factors of {num} : {divider_list}",f"\n{num_digits_str} = {prime_factors_str}")
+    return True
+  else:
+    return False
+    # if not notprime:
+    #   print(f"\n{num} is not a Smith number, {num} is a Prime Number itself.")
+    # else:
+    #   print(f"\n{num} is not a Smith number.",f"\nPrime factors of {num} : {divider_list}",f"\n{num_digits_str} != {prime_factors_str}")
+
+#building a list to specify range
+specified_range=[100,501]
+str_range_list = [str(i) for i in range(specified_range[0],specified_range[1])]
+#building a loop in purpose to check range due to find out if a number is Smith number
+for num in str_range_list:
+  check_smith(num)
+
+print(f"\nList of Smith numbers between {specified_range[0]} and {specified_range[1]-1} is : {smith_list_result}")

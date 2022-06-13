@@ -1,0 +1,31 @@
+from string import ascii_lowercase
+alphabet,alphabet_len,alphabet_vowel=ascii_lowercase,len(alphabet),"aeiou"
+
+def StringChallenge(string:str,num:int):
+  converted_string=""
+  for i in string:
+    if i.lower() in alphabet:
+      if i.islower():
+        i=alphabet[(alphabet.index(i.lower())+num)%alphabet_len]
+        if i in alphabet_vowel:
+          i=i.capitalize()
+          converted_string+=i
+        else:
+          converted_string+=i
+      else:
+        i=alphabet[(alphabet.index(i.lower())+num)%alphabet_len].capitalize()
+        converted_string+=i
+    else:
+      converted_string+=i
+  return converted_string
+
+
+#These "asserts" using only for self-checking
+if __name__ == '__main__':
+    print('"hello*3" and "fun times!" Examples:')
+    print(StringChallenge("heLLo*3",1),StringChallenge("Fun times!",1),sep="\t\t")
+
+    assert StringChallenge("heLLo*3",1) == "IfMMp*3", "Wrong Conversion"
+    assert StringChallenge("Fun times!",1) == "GvO Ujnft!", "Wrong Conversion"
+    assert StringChallenge("Zeppelin Zoo!23a",1) == "AfqqfmjO App!23b", "Wrong Conversion"
+    print("Function working as expected!")

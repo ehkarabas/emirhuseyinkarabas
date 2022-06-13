@@ -1,0 +1,8 @@
+def charcounter(string:str):
+  counter_dict,string_list={},list(string)
+  for i in string_list:
+    if i not in counter_dict:
+      counter_dict[i]=string_list.count(i) 
+  return counter_dict
+
+charcounter("hippo runs to us!")

@@ -1,0 +1,8 @@
+from string import punctuation
+print(
+    (lambda string : f'"{string}" is a palindrome'
+       if string.translate(string.maketrans("", "", punctuation)).replace(" ", "").lower() == 
+       string[::-1].translate(string[::-1].maketrans("", "", punctuation)).replace(" ", "").lower()
+       else f'"{string}" is not a palindrome')
+    ("Was it a car or a cat I saw?")
+       )

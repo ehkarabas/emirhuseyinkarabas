@@ -1,0 +1,12 @@
+def casecounter(string):
+  upper, lower = 0, 0
+  for i in string:
+    if i.isalpha():
+      if i == i.upper():
+        upper += 1
+      else:
+        lower += 1
+  print(f"Count of upper case characters : {upper}", 
+        f'Count of lower case characters : {lower}', sep = "\n")
+
+casecounter(input("Type a string to count character cases : "))

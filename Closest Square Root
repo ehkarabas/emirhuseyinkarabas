@@ -1,0 +1,21 @@
+def closest_sqrt(x):
+  negative, positive = x, x
+  while True:
+    negative -= 1
+    str_negative = str(negative ** 0.5)
+    if str_negative.rstrip(".0").isdigit() :
+      print(f'Checking.. : {x} -->', 
+            f"Square root of {negative} is : {int(negative ** 0.5)}")
+      return negative 
+    else:
+      positive += 1
+      str_positive = str(positive ** 0.5)
+      if str_positive.rstrip(".0").isdigit() :
+        print(f'Checking.. : {x} -->', 
+              f"Square root of {positive} is : {int(positive ** 0.5)}")
+        return positive
+print(closest_sqrt(8))
+print(closest_sqrt(13))
+print(closest_sqrt(24))
+print(closest_sqrt(9876))
+print(closest_sqrt(999999))

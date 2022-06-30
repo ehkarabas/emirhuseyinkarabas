@@ -1,0 +1,65 @@
+#input validation
+while True:
+  num1 = input("Type number 1 : ")
+  num2 = input("Type number 2 : ")
+  try:
+    num1, num2 = int(num1), int(num2)
+  except ValueError:
+    print("Invalid input, type only positive integers.")
+    continue 
+  else:
+    if num1 < 0 or num2 < 0:
+      print("Invalid input, type only positive integers.")
+      continue
+    else:
+      break
+
+#finding prime factors
+def prime_factor_list(num):
+  primef = []
+  for i in range(2,num+1):
+    if num % i == 0:
+      check = True
+      for y in range(2,i):
+        if i % y == 0:
+          check = False
+      if check:
+        primef.append(i)
+        num //= i
+        while num % i == 0:
+          primef.append(i)
+          num //= i
+  return primef
+
+#finding common and not common prime factors
+def unique_common_primef(lst1,lst2):
+  return list(set([i for i in lst1 if i in lst2]))
+
+primef1 = prime_factor_list(num1)
+primef2 = prime_factor_list(num2)
+common_primef = unique_common_primef(primef1,primef2)
+not_common = [i for i in (primef1 + primef2) if i not in common_primef]
+
+#finding highest common factor
+result_lcf, result_hcf = 1, 1
+for i in common_primef:
+  if primef1.count(i) < primef2.count(i):
+    result_hcf *= i ** primef1.count(i)
+  else:
+    result_hcf *= i ** primef2.count(i)
+
+#finding lowest common factor
+for i in common_primef:
+  if primef1.count(i) > primef2.count(i):
+    result_lcf *= i ** primef1.count(i)
+  else:
+    result_lcf *= i ** primef2.count(i)
+
+if not_common != []:
+  for i in not_common:
+    if i in primef1:
+      result_lcf *= i ** primef1.count(i)
+    else:
+      result_lcf *= i ** primef2.count(i)
+
+print(primef1,primef2,common_primef,result_lcf,result_hcf)

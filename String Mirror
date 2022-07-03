@@ -1,0 +1,12 @@
+from string import ascii_lowercase
+
+def mirror(string = input("Type something to mirror : "), 
+           index = int(input("Type index number of beginning of mirror : "))):
+
+  return string[:index] +\
+         "".join([ascii_lowercase[-1 * (ascii_lowercase.index(string[i]) + 1)]\
+                 for i in range(index,len(string))])
+
+# print(mirror("paradox", 3))
+# print(mirror("pneumonia", 6))
+# mirror()

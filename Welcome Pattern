@@ -1,0 +1,19 @@
+def welcomepattern(number = input("Type a number to display welcome " +
+                                  "pattern regard to your input : ")) :
+  if not number.isdigit() :
+    raise TypeError("Wrong input, you can only type positive integers.")
+  else :
+    number = int(number)
+    count = 0
+    patternlist = []
+    for i in range(number // 2) :
+      patternlist.append("".join(".|." * (1 + count)))
+      count += 2
+    print()
+    for i in patternlist :
+      print(format(i, f"-^{number * 3}s"))
+    print(format("WELCOME", f"-^{number * 3}s"))
+    for i in patternlist[::-1] :
+      print(format(i, f"-^{number * 3}s"))
+
+welcomepattern()

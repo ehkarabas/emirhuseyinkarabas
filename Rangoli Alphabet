@@ -1,0 +1,44 @@
+from string import ascii_lowercase
+from copy import deepcopy
+
+def rangoli(letter = input("Type a letter to " + 
+                           "return Rangoli pattern of it : ").casefold()) :
+  #checking if input is valid
+  if not letter.isalpha() :
+    raise TypeError("Wrong input, you can only type ascii letters")
+  index = 1
+  #printint input if it is letter "a"
+  if letter == "a" :
+    print("", letter, sep = "\n")
+  else:
+    #creating central string of rangoli
+    while ascii_lowercase.index(letter) - index != -1 :
+      if ascii_lowercase.index(letter) - index != 0 :
+        s = "-".join(ascii_lowercase[ascii_lowercase.index(letter):\
+                                     (ascii_lowercase.index(letter) - index):-1])
+        index += 1
+      else :
+        s = "-".join(ascii_lowercase[ascii_lowercase.index(letter)::-1])
+        index += 1
+    s += s[-2::-1] # mirroring central string of rangoli
+    
+    #creating radical lines of rangoli
+    copys = deepcopy(s)
+    rangolilist = []
+    while copys.replace("-", "") != letter :
+        copys = copys[:len(copys)//2 - 1] + copys[len(copys) // 2 + 3 :]
+        rangolilist.append(copys)
+
+    #moving the inputted letter to the beginning of the list
+    rangolilist = sorted(rangolilist, reverse = True)
+    rangolilist.insert(0, rangolilist.pop(-1))
+
+    #printing upper, central and lower parts of rangoli
+    print()
+    for i in rangolilist :
+      print(format(i, f"-^{len(s)}s")) #upper part of rangoli
+    print(s) #central part of rangoli
+    for i in rangolilist[::-1] :
+      print(format(i, f"-^{len(s)}s")) #lower part of rangoli
+
+rangoli()

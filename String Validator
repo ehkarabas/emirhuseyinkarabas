@@ -1,0 +1,16 @@
+def stringvalidate(string):
+  #creating a dictionary to store data of each item in the string
+  booldict = dict(zip((0,1,2,3,4),([],[],[],[],[])))
+  for s in string:
+    #storing data of each item in the string
+    for i in range(5):
+      if [s.isalnum(),s.isalpha(),s.isdigit(),s.islower(),s.isupper()][i]:
+        booldict[i].append(True)
+      else:
+        booldict[i].append(False)
+  #printing the result if any of item in the string suits for any type
+  for i in booldict.values():
+    print(any(i))
+  
+    
+stringvalidate("qA2")
